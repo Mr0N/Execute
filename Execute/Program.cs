@@ -7,7 +7,7 @@ namespace Execute
     {
         static void Main(string[] args)
         {
-            using ThreadPools pool = new ThreadPools(2);
+            using ThreadPools pool = new ThreadPools(6);
             for (int i = 0; i < 1000; i++)
                 pool.AddTask(() => {
                     Console.WriteLine($"{Index} ThreadId:{Thread.CurrentThread.ManagedThreadId}");
