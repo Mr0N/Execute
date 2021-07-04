@@ -8,24 +8,18 @@ namespace Execute
         static void Main(string[] args)
         {
             using ThreadPools pool = new ThreadPools(2);
+            for (int i = 0; i < 1000; i++)
                 pool.AddTask(() => {
-                    Thread.Sleep(6000);
-                    Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
+                    Console.WriteLine($"{Index} ThreadId:{Thread.CurrentThread.ManagedThreadId}");
                     });
-            pool.AddTask(() => {
-                Thread.Sleep(4000);
-                Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
-            });
-            pool.AddTask(() => {
-                Thread.Sleep(2000);
-                Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
-            });
-            pool.AddTask(() => {
-                Thread.Sleep(1000);
-                Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
-            });
+            
             Console.WriteLine("OK");
             Console.ReadKey();
         }
+        static int Index { get {
+                lock (block) return index++;
+            } }
+        static int index = 0;
+        static object block = new object();
     }
 }

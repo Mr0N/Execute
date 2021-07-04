@@ -34,9 +34,7 @@ namespace Execute
                     lock (block)
                     {
                         if (queueTask.TryDequeue(out var result))
-                        {
                             this.action = result;
-                        }
                     }
                     Thread.Sleep(40);
                 }
