@@ -27,13 +27,11 @@ namespace Execute
         ConcurrentBag<ExecuteThread> executeThreads;
 
         int maxThread;
-        object block;
-        public ThreadPools(int maxThread = 5)
+        public ThreadPools(int maxThread =1)
         {
             this.actions = new ConcurrentQueue<Action>();
             this.maxThread = maxThread;
             this.executeThreads = new ConcurrentBag<ExecuteThread>();
-            this.block = new();
         }
     }
 }
